@@ -11,11 +11,13 @@ const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+
+// Open event scheduler Modal to add event
 function openModal(date) {
     clicked = date;
 
     const eventForDay = events.find(e => e.date === clicked);
-
+    // if event already exist 
     if (eventForDay) {
         document.getElementById('eventText').innerText = eventForDay.title;
         deleteEventModal.style.display = 'block';
@@ -26,9 +28,11 @@ function openModal(date) {
     backDrop.style.display = 'block';
 }
 
+
+// Main function to load the calendar in Ui
 function load() {
     const dt = new Date();
-    // dt.setDate(1);
+
     if (nav !== 0) {
         dt.setMonth(new Date().getMonth() + nav);
     }
@@ -36,7 +40,9 @@ function load() {
     const day = dt.getDate();
     const month = dt.getMonth();
     const year = dt.getFullYear();
-
+    
+    var date = (dt.getMonth() + 1) + '/' + dt.getDate() + '/' + dt.getFullYear();
+    
     const firstDayOfMonth = new Date(year, month, 1);
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
@@ -47,20 +53,20 @@ function load() {
         day: 'numeric',
     });
 
-    console.log(dateString);
+    // padding days is to calculate no of days left in last month of current month and next month
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
     document.querySelector('.header h2').innerText =
         `${dt.toLocaleDateString('en-in', { month: 'long' })} ${year}`;
 
     monthDays.innerHTML = '';
-    console.log(paddingDays);
-    console.log(daysInMonth)
+    
     for (let i = 1; i <= paddingDays + daysInMonth; i++) {
         const daySquare = document.createElement('div');
         daySquare.classList.add('div');
 
         const dayString = `${month + 1}/${i - paddingDays}/${year}`;
+        
 
         if (i > paddingDays) {
             daySquare.innerText = i - paddingDays;
@@ -76,8 +82,11 @@ function load() {
                 eventDiv.innerText = eventForDay.title;
                 daySquare.appendChild(eventDiv);
             }
-
+            // Event listener added on each grid to open event modal
             daySquare.addEventListener('click', () => openModal(dayString));
+            // Event Listener on create event button 
+            document.querySelector("#plus").addEventListener('click',() => openModal(date))
+
         } else {
             daySquare.classList.add('padding');
         }
@@ -85,84 +94,9 @@ function load() {
         monthDays.appendChild(daySquare);
     }
 }
-// const load = () => {
-//   date.setDate(1);
 
 
-
-//   const lastDay = new Date(
-//     date.getFullYear(),
-//     date.getMonth() + 1,
-//     0
-//   ).getDate();
-
-//   const prevLastDay = new Date(
-//     date.getFullYear(),
-//     date.getMonth(),
-//     0
-//   ).getDate();
-
-//   const firstDayIndex = date.getDay();
-
-//   const lastDayIndex = new Date(
-//     date.getFullYear(),
-//     date.getMonth() + 1,
-//     0
-//   ).getDay();
-
-//   const nextDays = 7 - lastDayIndex - 1;
-
-//   const months = [
-//     "January",
-//     "February",
-//     "March",
-//     "April",
-//     "May",
-//     "June",
-//     "July",
-//     "August",
-//     "September",
-//     "October",
-//     "November",
-//     "December",
-//   ];
-
-//   document.querySelector(".header h2").innerHTML = months[date.getMonth()] + " " + date.getFullYear();
-
-//   // document.querySelector(".date p").innerHTML = new Date().toDateString();
-
-//   let days = "";
-
-//   for (let x = firstDayIndex; x > 0; x--) {
-//     days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
-//   }
-
-
-
-//   for (let i = 1; i <= lastDay; i++) {
-//     if (
-//       i === new Date().getDate() &&
-//       date.getMonth() === new Date().getMonth()
-//     ) {
-//       days += `<div class="today">${i}</div>`;
-//     } else {
-//       days += `<div>${i}</div>`;
-//     }
-//   }
-
-//   for (let j = 1; j <= nextDays; j++) {
-//     days += `<div class="next-date">${j}</div>`;
-
-//   }
-//   monthDays.innerHTML = days;
-
-
-
-
-
-// };
-
-
+// Once we open any modal we can close that using close button
 function closeModal() {
     eventTitleInput.classList.remove('error');
     newEventModal.style.display = 'none';
@@ -173,6 +107,7 @@ function closeModal() {
     load();
 }
 
+// This will save event in local Storage
 function saveEvent() {
     if (eventTitleInput.value) {
         eventTitleInput.classList.remove('error');
@@ -189,13 +124,14 @@ function saveEvent() {
     }
 }
 
+// to delete any event by clicking on that
 function deleteEvent() {
     events = events.filter(e => e.date !== clicked);
     localStorage.setItem('events', JSON.stringify(events));
     closeModal();
 }
 
-
+// go to next month and previous month of calendar
 function initButtons() {
     document.querySelector(".prev").addEventListener("click", () => {
         nav--;

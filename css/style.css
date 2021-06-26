@@ -18,7 +18,7 @@ body {
     /* background-color: #fdfdfd; */
 
 }
-
+/************************************************** Side Navbar Section ********************************************************/
 .side-navbar {
     width: 20vw;
     height: 100vh;
@@ -53,60 +53,6 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
-}
-
-.middle-container {
-    display: flex;
-    flex-direction: column;
-    width: 80vw;
-    height: 100vh;
-    /* border: 2px solid black; */
-
-    /* float: right; */
-}
-
-.header {
-    width: 80vw;
-    height: 10vh;
-    display: flex;
-    /* margin-left: 8px; */
-    align-items: center;
-    justify-content: space-between;
-
-}
-
-.month-year {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 40vw;
-}
-
-
-
-
-.teacher-name {
-    position: relative;
-    top: 10rem;
-
-}
-
-li {
-    list-style: none;
-    padding-top: 1rem;
-    color: #380853;
-    font-family: "Quicksand",
-        sans-serif;
-    font-weight: 600;
-
-}
-
-li:hover {
-    cursor: pointer;
-}
-
-.fa-square {
-    color: #A2A8DB;
 }
 
 .padding {
@@ -168,6 +114,62 @@ h4 {
     /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
+.teacher-name {
+    position: relative;
+    top: 10rem;
+
+}
+
+li {
+    list-style: none;
+    padding-top: 1rem;
+    color: #380853;
+    font-family: "Quicksand",
+        sans-serif;
+    font-weight: 600;
+
+}
+
+li:hover {
+    cursor: pointer;
+}
+
+.fa-square {
+    color: #A2A8DB;
+}
+
+/************************************************** Side Navbar Section End  ********************************************************/
+
+.middle-container {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 100vh;
+    /* border: 2px solid black; */
+
+    /* float: right; */
+}
+
+/************************************************** Header section start ********************************************************/
+
+.header {
+    width: 80vw;
+    height: 10vh;
+    display: flex;
+    /* margin-left: 8px; */
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.month-year {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 40vw;
+}
+
+
 .example input[type=text] {
     padding: 5px;
     font-size: 17px;
@@ -210,6 +212,10 @@ form.example::after {
     display: table;
 }
 
+/************************************************** Header section End ********************************************************/
+
+
+/************************************************** Calendar section start ********************************************************/
 .weekdays {
     width: 80vw;
     height: 5vh;
@@ -262,7 +268,7 @@ form.example::after {
 
 .days div:hover:not(.today) {
 
-    border: 0.2rem solid #777;
+    /* border: 0.2rem solid #777; */
     cursor: pointer;
 }
 
@@ -272,14 +278,8 @@ form.example::after {
 }
 
 
-.day {
-    background-color: #fdfdfd;
-    width: 7rem;
-    height: 2rem;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    border-width: thin
-}
+
+
 
 .day:hover {
     cursor: pointer;
@@ -291,72 +291,9 @@ form.example::after {
 
 }
 
-@media screen and (max-width: 700px) {
-    .side-navbar {
-        /* text-align: center;
-        float: none; */
-        display: none;
-    }
+/************************************************** Header section End ********************************************************/
 
-    .middle-container {
-        margin-left: 1rem;
-    }
-
-    .header {
-        width: 90vw;
-    }
-
-    .weekdays {
-        width: 90vw;
-    }
-
-    .days {
-        width: 88vw;
-    }
-
-    .example input[type=text] {
-        width: 50%;
-        margin-left: 3rem;
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .side-navbar {
-        /* text-align: center;
-        float: none; */
-        display: none;
-    }
-
-    .middle-container {
-        /* margin-left: 1rem; */
-        margin: 0 auto;
-    }
-
-    .header {
-        width: 100vw;
-        margin: 0 auto;
-    }
-
-    .weekdays {
-        width: 100vw;
-        margin: 0 auto;
-    }
-
-    .days {
-        width: 100vw;
-        margin: 0 auto;
-    }
-
-    .day {
-        margin-left: 1rem;
-    }
-
-    .example input[type=text] {
-        width: 50%;
-        margin-left: 3rem;
-    }
-
-}
+/************************************************** Event section Start********************************************************/
 
 .event {
     font-size: 10px;
@@ -421,4 +358,70 @@ form.example::after {
     height: 100vh;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+/************************************************** Event section End ********************************************************/
+@media screen and (max-width: 700px) {
+    .side-navbar {
+        /* text-align: center;
+        float: none; */
+        display: none;
+    }
+
+    .middle-container {
+        margin-left: 1rem;
+    }
+
+    .header {
+        width: 90vw;
+    }
+
+    .weekdays {
+        width: 90vw;
+    }
+
+    .days {
+        width: 88vw;
+    }
+
+    .example input[type=text] {
+        width: 50%;
+        margin-left: 3rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .side-navbar {
+        /* text-align: center;
+        float: none; */
+        display: none;
+    }
+
+    .middle-container {
+        /* margin-left: 1rem; */
+        margin: 0 auto;
+    }
+
+    .header {
+        width: 100vw;
+        margin: 0 auto;
+    }
+
+    .weekdays {
+        width: 100vw;
+        margin: 0 auto;
+    }
+
+    .days {
+        width: 100vw;
+        margin: 0 auto;
+    }
+
+
+
+    .example input[type=text] {
+        width: 50%;
+        margin-left: 3rem;
+    }
+
 }
